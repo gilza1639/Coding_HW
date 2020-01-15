@@ -19,3 +19,5 @@ elif money_earn == money_lost:
     print('Расходы равны издержкам, фирма вышла в ноль')
     print('Рентабельность составила: 0')
     print('Доход на сотрудника: 0')
+else:
+    print('Убыток составил', money_lost-money_earn)

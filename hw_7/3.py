@@ -28,3 +28,53 @@
 Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5.
 Тогда метод make_order() вернет строку: **\n\n***
 '''
+
+
+class Cell:
+    def __init__(self, amount):
+        self.amount = int(amount)
+
+    def __add__(self, other):
+        return self.amount + other.amount
+
+    def __sub__(self, other):
+        if other.amount >= self.amount:
+            return 'разность количества ячеек двух клеток должна быть больше нуля'
+        else:
+            return other.amount + self.amount
+
+    def __mul__(self, other):
+        return self.amount * other.amount
+
+    def __truediv__(self, other):
+        if other.amount > self.amount:
+            return 'деление не может давать число 0'
+        else:
+            return self.amount // other.amount
+
+    def make_order(self, cells_in_line):
+        output = (('*' * cells_in_line + '\n') * (self.amount // cells_in_line)) + ('*' * (self.amount % cells_in_line))
+        if output[-1:] == '\n':
+            return output[:-1]
+        else:
+            return output
+
+
+cells_test_1 = Cell(50)
+cells_test_2 = Cell(28)
+cells_test_3 = Cell(4)
+
+print ('\n' + '==='*50 + '\n')
+print(cells_test_1.make_order(4))
+print ('\n' + '==='*50 + '\n')
+print(cells_test_1.make_order(50))
+print ('\n' + '==='*50 + '\n')
+print(cells_test_3.make_order(10))
+print ('\n' + '==='*50 + '\n')
+print (cells_test_1 + cells_test_2)
+print ('\n' + '==='*50 + '\n')
+print (cells_test_1 - cells_test_2)
+print ('\n' + '==='*50 + '\n')
+print (cells_test_1 / cells_test_3)
+print ('\n' + '==='*50 + '\n')
+
